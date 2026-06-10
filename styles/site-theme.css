@@ -1,0 +1,143 @@
+/**
+
+ * Simple Solutioning — premium light theme
+
+ * Bijelo · sivo · crveno (usklađeno sa logom)
+
+ */
+
+
+
+:root {
+
+  /* ── Pozadine ─────────────────────────────────────────────────────────── */
+
+  --site-canvas:    #ffffff;
+
+  --site-surface-a: #f7f7f8;
+
+  --site-surface-b: #efeff1;
+
+  --site-surface-c: #ffffff;
+
+  --site-card:      #ffffff;
+
+
+
+  /* ── Brand crvena (dublji wine crimson — premium, ne jarke neon) ─────── */
+
+  --site-brand:         #a8141f;
+
+  --site-brand-rgb:     168 20 31;
+
+  --site-brand-accent:  #c61a28;
+
+  --site-brand-hover:   #861018;
+
+  --site-brand-deep:    #6d0d14;
+
+  --site-brand-muted:   #92202a;
+
+  --site-brand-ambient: rgb(168 20 31 / 0.05);
+
+  --site-brand-glow:    rgb(168 20 31 / 0.32);
+
+
+
+  /* Gradijent površine primarnih dugmadi */
+
+  --site-btn-primary-from: #c41e2c;
+
+  --site-btn-primary-to:   #8f1119;
+
+  --site-btn-primary-edge: #6d0d14;
+
+
+
+  /* ── Tekst ────────────────────────────────────────────────────────────── */
+
+  --site-ink:       #1a1a1f;
+
+  --site-muted:     #5c5c66;
+
+  --site-subtle:    #888894;
+
+  --site-metallic:  #8f8f8f;
+
+
+
+  /* ── Luxury akcent (diskretno) ────────────────────────────────────────── */
+
+  --site-luxury:      #bfa77a;
+
+  --site-luxury-rgb:  191 167 122;
+
+
+
+  /* ── Granice i linije ─────────────────────────────────────────────────── */
+
+  --site-border: #e2e2e8;
+
+  --site-line:   rgb(0 0 0 / 0.06);
+
+
+
+  /* ── Header ───────────────────────────────────────────────────────────── */
+
+  --site-header-nav-on-light: var(--site-ink);
+
+  --site-header-nav-hover:    var(--site-brand-muted);
+
+  --site-header-link-on-hero-rgb: 255 255 255;
+
+  --site-header-link-caret:   var(--site-muted);
+
+
+
+  /* ── Sjene ────────────────────────────────────────────────────────────── */
+
+  --site-section-py: clamp(2.75rem, 8vw, 6rem);
+
+
+
+  --shadow-site-card:    0 2px 16px rgb(0 0 0 / 0.05);
+
+  --shadow-site-card-lg: 0 8px 36px rgb(0 0 0 / 0.07);
+
+  --shadow-site-lift:    0 12px 48px rgb(0 0 0 / 0.09);
+
+
+
+  /* ── Glass / kartice ───────────────────────────────────────────────────── */
+
+  --glass-bg:     rgb(255 255 255 / 0.9);
+
+  --glass-border: rgb(255 255 255 / 0.85);
+
+  --glass-shadow:
+
+    0 1px 0 rgb(255 255 255 / 0.95) inset,
+
+    0 12px 40px rgb(0 0 0 / 0.06),
+
+    0 0 0 1px rgb(0 0 0 / 0.04);
+
+
+
+  --site-peach:     #ececea;
+
+  --site-peach-rgb: 236 236 234;
+
+
+
+  /* Kompatibilnost */
+
+  --med-bg:   var(--site-canvas);
+
+  --med-blue: var(--site-surface-a);
+
+  --med-gray: var(--site-surface-b);
+
+}
+
+
