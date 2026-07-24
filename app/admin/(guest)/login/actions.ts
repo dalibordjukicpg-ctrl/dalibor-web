@@ -181,6 +181,7 @@ export async function loginAction(
       ip: meta.ip,
       userAgent: meta.userAgent,
     });
+    return { error: null };
   } catch (e) {
     if (e && typeof e === "object" && "digest" in e) throw e;
     console.error(e);

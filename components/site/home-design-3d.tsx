@@ -38,7 +38,7 @@ export function HomeDesign3d({
           </h2>
         </FadeIn>
 
-        <FadeIn className="mt-8 sm:mt-10" delay={120}>
+        <FadeIn className="mt-8 sm:mt-10" delay={100}>
           <BeforeAfterSlider
             beforeSrc={HOME_BEFORE_AFTER.before}
             afterSrc={HOME_BEFORE_AFTER.after}
@@ -56,7 +56,7 @@ export function HomeDesign3d({
         ) : null}
 
         {ctaLabel?.trim() && ctaHref?.trim() ? (
-          <FadeIn className="mt-8 text-center sm:mt-10" delay={260}>
+          <FadeIn className="mt-8 text-center sm:mt-10" delay={300}>
             <Link
               href={ctaHref}
               className="site-btn-secondary h-11 rounded-full px-8 text-[10px] tracking-[0.24em] sm:text-[11px]"
