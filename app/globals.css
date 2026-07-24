@@ -30,10 +30,30 @@ body {
   z-index: 0;
   color: var(--site-ink);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Besprekorna tipografija: kerning, ligature i precizniji raspored slova */
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   /* Transparentno — GlobalBackdrop je ispod sadržaja (z-index -1); html ima canvas podlogu protiv bijelog „šafta“. */
   background: transparent;
   /* iOS/Android: suptilan tap highlight u tonu brenda */
   -webkit-tap-highlight-color: rgb(168 20 31 / 0.1);
+}
+
+/* Naslovi (serif display font): fine ligature i uravnotežen prelom reda */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  font-kerning: normal;
+}
+
+/* Selekcija teksta u tonu brenda — umjesto podrazumijevane plave */
+::selection {
+  background: rgb(var(--site-brand-rgb) / 0.14);
+  color: var(--site-ink);
 }
 
 /*
@@ -427,7 +447,8 @@ main {
     background: transparent;
   }
 
-  /* ── Dugmad (premium: gradijent, stakleni sjaj, pill oblik) ─────────── */
+  /* ── Dugmad (premium: prozirno staklo + gradijent, pill oblik) ───────── */
+  /* Prozirnost se štima u styles/site-theme.css: --site-btn-glass-alpha    */
   .site-btn-primary {
     position: relative;
     isolation: isolate;
@@ -437,20 +458,22 @@ main {
     justify-content: center;
     background: linear-gradient(
       168deg,
-      var(--site-btn-primary-from) 0%,
-      var(--site-brand) 46%,
-      var(--site-btn-primary-to) 100%
+      rgb(var(--site-btn-primary-from-rgb) / var(--site-btn-glass-alpha)) 0%,
+      rgb(var(--site-brand-rgb) / var(--site-btn-glass-alpha)) 46%,
+      rgb(var(--site-btn-primary-to-rgb) / calc(var(--site-btn-glass-alpha) + 0.06)) 100%
     );
+    backdrop-filter: blur(12px) saturate(1.25);
+    -webkit-backdrop-filter: blur(12px) saturate(1.25);
     color: #fff;
-    border: 1px solid rgb(255 255 255 / 0.14);
+    border: 1px solid rgb(255 255 255 / 0.2);
     border-radius: 9999px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     text-shadow: 0 1px 1px rgb(0 0 0 / 0.18);
     box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.16) inset,
-      0 -1px 0 rgb(0 0 0 / 0.14) inset,
+      0 1px 0 rgb(255 255 255 / 0.22) inset,
+      0 -1px 0 rgb(0 0 0 / 0.12) inset,
       0 10px 32px -10px var(--site-brand-glow),
       0 2px 8px rgb(0 0 0 / 0.08);
     transition:
@@ -483,12 +506,17 @@ main {
   .site-btn-primary:hover {
     background: linear-gradient(
       168deg,
-      color-mix(in srgb, var(--site-btn-primary-from) 90%, white 10%) 0%,
-      var(--site-brand-hover) 48%,
-      var(--site-btn-primary-edge) 100%
+      color-mix(
+        in srgb,
+        rgb(var(--site-btn-primary-from-rgb) / 0.94) 90%,
+        white 10%
+      ) 0%,
+      rgb(var(--site-brand-hover-rgb) / 0.92) 48%,
+      rgb(var(--site-btn-primary-edge-rgb) / 0.94) 100%
     );
+    border-color: rgb(255 255 255 / 0.3);
     box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.18) inset,
+      0 1px 0 rgb(255 255 255 / 0.24) inset,
       0 14px 40px -10px var(--site-brand-glow),
       0 4px 14px rgb(0 0 0 / 0.1);
     transform: translateY(-2px);
@@ -511,16 +539,17 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgb(255 255 255 / 0.78);
+    background: rgb(255 255 255 / 0.58);
     color: var(--site-ink);
     border: 1px solid rgb(var(--site-brand-rgb) / 0.2);
     border-radius: 9999px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(14px) saturate(1.15);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
     box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.9) inset,
+      0 1px 0 rgb(255 255 255 / 0.85) inset,
       0 4px 18px -10px rgb(0 0 0 / 0.08);
     transition:
       border-color 0.25s ease,
@@ -533,7 +562,7 @@ main {
   .site-btn-secondary:hover {
     border-color: rgb(var(--site-brand-rgb) / 0.48);
     color: var(--site-brand);
-    background: rgb(var(--site-brand-rgb) / 0.05);
+    background: rgb(255 255 255 / 0.72);
     box-shadow:
       0 1px 0 rgb(255 255 255 / 0.95) inset,
       0 10px 28px -12px var(--site-brand-glow);
@@ -544,15 +573,18 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgb(255 255 255 / 0.06);
+    background: rgb(255 255 255 / 0.08);
     color: #fff;
     border: 1px solid rgb(255 255 255 / 0.34);
     border-radius: 9999px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 24px rgb(0 0 0 / 0.12);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.18) inset,
+      0 4px 24px rgb(0 0 0 / 0.12);
     transition:
       border-color 0.25s ease,
       background-color 0.25s ease,
@@ -576,14 +608,16 @@ main {
   .site-pill-active {
     background: linear-gradient(
       168deg,
-      var(--site-btn-primary-from) 0%,
-      var(--site-brand) 52%,
-      var(--site-btn-primary-to) 100%
+      rgb(var(--site-btn-primary-from-rgb) / var(--site-btn-glass-alpha)) 0%,
+      rgb(var(--site-brand-rgb) / var(--site-btn-glass-alpha)) 52%,
+      rgb(var(--site-btn-primary-to-rgb) / calc(var(--site-btn-glass-alpha) + 0.06)) 100%
     );
+    backdrop-filter: blur(10px) saturate(1.2);
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
     color: #fff;
-    border: 1px solid rgb(255 255 255 / 0.12);
+    border: 1px solid rgb(255 255 255 / 0.18);
     box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.14) inset,
+      0 1px 0 rgb(255 255 255 / 0.18) inset,
       0 4px 16px -6px var(--site-brand-glow);
     text-shadow: 0 1px 1px rgb(0 0 0 / 0.15);
   }
@@ -604,13 +638,15 @@ main {
   .site-scroll-top-btn {
     background: linear-gradient(
       165deg,
-      var(--site-btn-primary-from) 0%,
-      var(--site-brand) 55%,
-      var(--site-btn-primary-to) 100%
+      rgb(var(--site-btn-primary-from-rgb) / var(--site-btn-glass-alpha)) 0%,
+      rgb(var(--site-brand-rgb) / var(--site-btn-glass-alpha)) 55%,
+      rgb(var(--site-btn-primary-to-rgb) / calc(var(--site-btn-glass-alpha) + 0.06)) 100%
     );
-    border: 1px solid rgb(255 255 255 / 0.22);
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    border: 1px solid rgb(255 255 255 / 0.26);
     box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.16) inset,
+      0 1px 0 rgb(255 255 255 / 0.2) inset,
       0 10px 32px -8px var(--site-brand-glow),
       0 4px 14px rgb(0 0 0 / 0.12);
     transition:

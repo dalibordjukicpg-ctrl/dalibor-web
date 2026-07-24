@@ -52,15 +52,29 @@
 
   --site-btn-primary-edge: #6d0d14;
 
+  /* RGB varijante za prozirna (staklena) dugmad */
+
+  --site-btn-primary-from-rgb: 196 30 44;
+
+  --site-btn-primary-to-rgb:   143 17 25;
+
+  --site-btn-primary-edge-rgb: 109 13 20;
+
+  --site-brand-hover-rgb:      134 16 24;
+
+  /* Prozirnost dugmadi: 1 = puna boja, 0.8 = vidljivo staklo */
+
+  --site-btn-glass-alpha: 0.84;
+
 
 
   /* ── Tekst ────────────────────────────────────────────────────────────── */
 
   --site-ink:       #1a1a1f;
 
-  --site-muted:     #5c5c66;
+  --site-muted:     #52525c; /* tamnije radi čitljivosti dužeg teksta na bijelom */
 
-  --site-subtle:    #888894;
+  --site-subtle:    #82828e;
 
   --site-metallic:  #8f8f8f;
 
