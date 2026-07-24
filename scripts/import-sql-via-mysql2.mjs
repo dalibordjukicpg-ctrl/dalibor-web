@@ -39,10 +39,30 @@ function readSqlFile(filePath) {
 
 const sql = readSqlFile(sqlPath);
 
+/** Cloud baze (TiDB/Aiven…) odbijaju konekciju bez TLS-a; lokalni MySQL ga nema. */
+function needsTls(connectionUri) {
+  try {
+    const { hostname } = new URL(connectionUri.replace(/^mysql2?:/i, "http:"));
+    const h = hostname.toLowerCase();
+    if (h === "localhost" || h === "127.0.0.1" || h === "::1") return false;
+    return (
+      h.endsWith("tidbcloud.com") ||
+      h.endsWith("aivencloud.com") ||
+      h.endsWith("psdb.cloud") ||
+      h.includes("planetscale")
+    );
+  } catch {
+    return false;
+  }
+}
+
 const conn = await mysql.createConnection({
   uri: url,
   multipleStatements: true,
   connectTimeout: 60_000,
+  ...(needsTls(url)
+    ? { ssl: { minVersion: "TLSv1.2", rejectUnauthorized: true } }
+    : {}),
 });
 
 try {
