@@ -3,7 +3,7 @@
  *
  * Stvarni fajl-tree i dalje stoji u `app/admin/...`, ali se javna URL putanja
  * mijenja kroz env `ADMIN_BASE_PATH`. `middleware.ts` interno radi rewrite
- * (`/hrc-panel-74x/*` → `/admin/*`) i istovremeno blokira direktan pristup
+ * (`/studio-panel4/*` → `/admin/*`) i istovremeno blokira direktan pristup
  * starom `/admin/*` URL-u (vraća 404).
  *
  * Promjena u produkciji:
@@ -15,7 +15,7 @@
  *   - ne smije biti `/admin`, `/api`, `/_next`, ili nešto što kolidira sa javnim URL-om
  */
 
-const DEFAULT_ADMIN_BASE_PATH = "/hrc-panel-74x";
+const DEFAULT_ADMIN_BASE_PATH = "/studio-panel4";
 
 function normalize(raw: string | undefined | null): string {
   const trimmed = (raw ?? "").trim();
@@ -34,7 +34,7 @@ function normalize(raw: string | undefined | null): string {
 }
 
 /**
- * Javna admin baza (npr. `/hrc-panel-74x`).
+ * Javna admin baza (npr. `/studio-panel4`).
  *
  * Učitavamo iz dvije env varijable:
  *   - `ADMIN_BASE_PATH` (server-only) — primarni izvor
@@ -50,10 +50,10 @@ export const ADMIN_BASE_PATH = normalize(
  * Pomoćnik za izgradnju admin URL-a iz pod-puta.
  *
  * @example
- *   adminPath()            → "/hrc-panel-74x"
- *   adminPath("login")     → "/hrc-panel-74x/login"
- *   adminPath("/users")    → "/hrc-panel-74x/users"
- *   adminPath("posts/abc") → "/hrc-panel-74x/posts/abc"
+ *   adminPath()            → "/studio-panel4"
+ *   adminPath("login")     → "/studio-panel4/login"
+ *   adminPath("/users")    → "/studio-panel4/users"
+ *   adminPath("posts/abc") → "/studio-panel4/posts/abc"
  */
 export function adminPath(sub: string = ""): string {
   const s = sub.trim();

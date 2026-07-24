@@ -14,7 +14,7 @@ const initial: LoginState = { error: null };
  * placeholder ako se komponenta upotrijebi bez prop-a.
  */
 const DEFAULT_REDIRECT =
-  process.env.NEXT_PUBLIC_ADMIN_BASE_PATH?.trim() || "/studio-panel";
+  process.env.NEXT_PUBLIC_ADMIN_BASE_PATH?.trim() || "/studio-panel4";
 
 export function LoginForm({
   redirectTo = DEFAULT_REDIRECT,

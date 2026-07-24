@@ -19,7 +19,7 @@ import { isPreviewHost } from "@/lib/site-url";
 /**
  * Edge sloj:
  *   1) Direktan `/admin*` URL više nije dostupan — vraćamo 404 (skriva postojanje admina).
- *   2) Javna admin baza je iz env-a (`ADMIN_BASE_PATH`, default `/hrc-panel-74x`).
+ *   2) Javna admin baza je iz env-a (`ADMIN_BASE_PATH`, default `/studio-panel4`).
  *      Sve unutar te baze se interno rewrite-uje u `/admin/...` da postojeća struktura
  *      `app/admin/...` ne mora da se preimenuje.
  *   3) Brza provjera oblika cookie-a (bez baze) za zaštićene admin podrute.
@@ -49,7 +49,7 @@ export function middleware(request: NextRequest) {
   }
 
   // ── 1) Admin — prije WP legacy redirecta (inače /studio-panel → /me/posts/...) ─
-  const legacyAdminPrefixes = ["/admin", "/hrc-panel-74x"] as const;
+  const legacyAdminPrefixes = ["/admin", "/hrc-panel-74x", "/studio-panel"] as const;
   for (const legacy of legacyAdminPrefixes) {
     if (pathname === legacy || pathname.startsWith(`${legacy}/`)) {
       const sub = pathname.slice(legacy.length);

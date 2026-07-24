@@ -85,6 +85,7 @@ const RESERVED_ROOT_SEGMENTS = new Set([
   "index.php",
   "hrc-panel-74x",
   "studio-panel",
+  "studio-panel4",
   ADMIN_BASE_PATH.replace(/^\//, ""),
   "_next",
 ]);
