@@ -10,6 +10,9 @@ import {
 import type { SiteStringKey } from "@/lib/site-fields";
 import {
   applyPublicHeaderNavPolicy,
+  looksLikeBlogNavRoot,
+  looksLikePortfolioNavRoot,
+  looksLikeProcessNavRoot,
   sortPublicHeaderRoots,
 } from "@/lib/site-page-header-nav";
 
@@ -39,7 +42,7 @@ export const FALLBACK_HEADER_NAV: PublicNavItem[] = [
   },
   {
     id: "fallback-blog",
-    href: "#novosti",
+    href: "/blog",
     label: "Blog",
     children: [],
   },
@@ -59,6 +62,32 @@ const FALLBACK_EN: Record<string, string> = {
   Kontakt: "Contact",
 };
 
+/** Portfolio / Proces / Blog iz seeda često nedostaju u `nav_links` — dopuni bez duplikata. */
+function ensureStudioNavEssentials(roots: PublicNavItem[]): PublicNavItem[] {
+  const out = [...roots];
+
+  const injectIfMissing = (
+    matcher: (item: PublicNavItem) => boolean,
+    fallbackId: string,
+  ) => {
+    if (out.some(matcher)) return;
+    const fb = FALLBACK_HEADER_NAV.find((x) => x.id === fallbackId);
+    if (fb) out.push({ ...fb, children: [] });
+  };
+
+  injectIfMissing(looksLikePortfolioNavRoot, "fallback-portfolio");
+  injectIfMissing(looksLikeProcessNavRoot, "fallback-process");
+
+  return out.map((item) => {
+    if (!looksLikeBlogNavRoot(item)) return item;
+    const h = item.href.trim().toLowerCase();
+    if (h === "#novosti" || h.endsWith("#novosti")) {
+      return { ...item, href: "/blog", children: [] };
+    }
+    return item;
+  });
+}
+
 export async function resolveHeaderNav(
   nav: PublicNavItem[],
   locale: Locale,
@@ -66,19 +95,30 @@ export async function resolveHeaderNav(
 ): Promise<PublicNavItem[]> {
   let roots = nav.length > 0 ? nav : FALLBACK_HEADER_NAV;
 
+  if (nav.length > 0) {
+    roots = ensureStudioNavEssentials(roots);
+  }
+
   roots = applyPublicHeaderNavPolicy(roots);
   sortPublicHeaderRoots(roots);
 
   if (locale === defaultLocale || !isNavRuntimeTranslateEnabled()) {
-    if (locale === "en" && nav.length === 0) {
+    if (locale === "en") {
       return roots.map((item) => ({
         ...item,
-        label: FALLBACK_EN[item.label] ?? item.label,
+        label:
+          item.id.startsWith("fallback-")
+            ? (FALLBACK_EN[item.label] ?? item.label)
+            : item.label,
         children: shallowCloneNavChildren(item.children),
       }));
     }
     return roots.map((item) => ({
       ...item,
+      label:
+        item.id === "fallback-portfolio" && s?.["footer.col_portfolio"]
+          ? s["footer.col_portfolio"]
+          : item.label,
       children: shallowCloneNavChildren(item.children),
     }));
   }

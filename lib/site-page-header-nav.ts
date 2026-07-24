@@ -172,6 +172,25 @@ export function looksLikeBlogNavRoot(item: PublicNavItem): boolean {
   return false;
 }
 
+export function looksLikePortfolioNavRoot(item: PublicNavItem): boolean {
+  const L = normNavLabel(item.label);
+  const compact = L.replace(/\s+/g, " ").trim();
+  if (compact === "portfolio" || compact.startsWith("portfolio ")) return true;
+  const h = item.href.trim().toLowerCase();
+  return h.includes("#portfolio") || /\/portfolio\/?(\?|#|$)/.test(h);
+}
+
+export function looksLikeProcessNavRoot(item: PublicNavItem): boolean {
+  const L = normNavLabel(item.label);
+  const compact = L.replace(/\s+/g, " ").trim();
+  if (compact === "proces" || compact === "process") return true;
+  if (compact === "kako radimo" || compact === "how we work") return true;
+  if (/\bproces\b/.test(compact) && compact.length <= 32) return true;
+  if (/\bkako radimo\b/.test(compact) && compact.length <= 32) return true;
+  const h = item.href.trim().toLowerCase();
+  return h.includes("#proces") || h.includes("#process");
+}
+
 function looksLikeKontaktNavRoot(item: PublicNavItem): boolean {
   const L = normNavLabel(item.label);
   const h = item.href.trim().toLowerCase();
@@ -204,6 +223,10 @@ export function applyPublicHeaderNavPolicy(roots: PublicNavItem[]): PublicNavIte
         })
         .map((c) => cloneNavBranch(c));
       out.push({ ...r, children });
+    } else if (looksLikePortfolioNavRoot(r)) {
+      out.push({ ...r, children: [] });
+    } else if (looksLikeProcessNavRoot(r)) {
+      out.push({ ...r, children: [] });
     } else if (looksLikeONamaNavRoot(r)) {
       out.push(cloneNavBranch(r));
     } else if (looksLikeBlogNavRoot(r)) {
@@ -219,11 +242,13 @@ export function applyPublicHeaderNavPolicy(roots: PublicNavItem[]): PublicNavIte
 /** Red glavnog menija: O nama → Usluge → Blog → Kontakt (+ ostalo na kraju). */
 export function sortPublicHeaderRoots(roots: PublicNavItem[]): void {
   function rank(x: PublicNavItem): number {
-    if (looksLikeONamaNavRoot(x)) return 0;
-    if (looksLikeUslugeParent(x)) return 1;
-    if (looksLikeBlogNavRoot(x)) return 2;
-    if (looksLikeKontaktNavRoot(x)) return 3;
-    return 4;
+    if (looksLikePortfolioNavRoot(x)) return 0;
+    if (looksLikeProcessNavRoot(x)) return 1;
+    if (looksLikeONamaNavRoot(x)) return 2;
+    if (looksLikeUslugeParent(x)) return 3;
+    if (looksLikeBlogNavRoot(x)) return 4;
+    if (looksLikeKontaktNavRoot(x)) return 5;
+    return 6;
   }
 
   roots.sort((a, b) => {

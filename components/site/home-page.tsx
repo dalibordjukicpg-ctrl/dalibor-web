@@ -173,6 +173,16 @@ export function HomePageView({
         projects={portfolioProjects}
       />
 
+      <HomeBlogPreview
+        locale={locale}
+        eyebrow={s["home.news_eyebrow"]}
+        title={s["section.news_title"]}
+        readLabel={s["home.news_read_label"]}
+        archiveHref={`/${locale}/blog`}
+        posts={dbError ? [] : posts}
+        loadError={dbError}
+      />
+
       <HomeAbout
         eyebrow={s["about.eyebrow"]}
         title={s["about.title"]}
@@ -200,16 +210,6 @@ export function HomePageView({
       <HomeTestimonials
         title={s["team.title"]}
         items={testimonials.filter((t) => t.quote.trim())}
-      />
-
-      <HomeBlogPreview
-        locale={locale}
-        eyebrow={s["home.news_eyebrow"]}
-        title={s["section.news_title"]}
-        readLabel={s["home.news_read_label"]}
-        archiveHref={`/${locale}#novosti`}
-        posts={dbError ? [] : posts}
-        loadError={dbError}
       />
     </>
   );

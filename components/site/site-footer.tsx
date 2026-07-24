@@ -62,6 +62,14 @@ export function SiteFooter({
     footerContactHref ?? resolvePublicHref(locale, "/s/kontakt");
   const bookHref = resolvePublicHref(locale, s["header.cta_book_href"] || "#kontakt");
 
+  const exploreLinks = [
+    { label: s["footer.col_portfolio"], href: resolvePublicHref(locale, "/#portfolio") },
+    { label: s["process.eyebrow"], href: resolvePublicHref(locale, "/#proces") },
+    { label: s["home.news_eyebrow"], href: resolvePublicHref(locale, "/blog") },
+    { label: s["footer.col_about_nav"], href: resolvePublicHref(locale, "/#o-nama") },
+    { label: s["footer.col_contact"], href: kontaktHref },
+  ];
+
   const contactRowClass =
     "group flex w-full max-w-md items-start justify-center gap-3 text-sm transition-colors hover:text-site-brand-accent lg:justify-start";
 
@@ -73,8 +81,8 @@ export function SiteFooter({
       <div className="mx-auto max-w-7xl px-6 lg:px-14">
         <FadeIn>
           <div className="border-b border-site-border py-14 lg:py-16">
-            <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10 lg:gap-14">
-              <div className={FOOTER_COL}>
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-10">
+              <div className={`${FOOTER_COL} md:col-span-2 lg:col-span-1`}>
                 <SiteLogo alt={s["org.brand"]} variant="footer" className="mb-5" />
                 {tagline ? (
                   <p className="max-w-sm text-sm leading-relaxed text-site-muted">{tagline}</p>
@@ -82,6 +90,26 @@ export function SiteFooter({
                 <p className="mt-4 max-w-sm text-sm leading-relaxed text-site-subtle">
                   {s["footer.about_body"]}
                 </p>
+              </div>
+
+              <div className={FOOTER_COL}>
+                <p className={COL_TITLE}>
+                  {locale === "en" ? "Explore" : "Sajt"}
+                </p>
+                <nav
+                  aria-label={locale === "en" ? "Site sections" : "Sekcije sajta"}
+                  className="flex w-full max-w-md flex-col items-center gap-1 lg:items-start"
+                >
+                  {exploreLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="inline-flex min-h-[44px] items-center py-2 text-sm text-site-muted transition-colors hover:text-site-brand-accent active:text-site-brand"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
               </div>
 
               <div className={FOOTER_COL}>

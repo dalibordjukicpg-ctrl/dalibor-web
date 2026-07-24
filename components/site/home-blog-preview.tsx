@@ -21,6 +21,8 @@ type Props = {
   posts: HomeBlogPost[];
   locale: Locale;
   loadError?: string | null;
+  /** Sakrij „Svi članci“ kad smo već na arhivi. */
+  showArchiveLink?: boolean;
 };
 
 export function HomeBlogPreview({
@@ -31,33 +33,36 @@ export function HomeBlogPreview({
   posts,
   locale,
   loadError,
+  showArchiveLink = true,
 }: Props) {
   const err = loadError?.trim();
 
   return (
     <section
       id="novosti"
-      className="site-section site-section-scrim-md relative z-10 scroll-mt-24 overflow-x-hidden bg-site-surface-b py-section-y"
+      className="site-section site-section-scrim-md relative z-10 scroll-mt-header overflow-x-hidden bg-site-surface-b py-section-y"
     >
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-16">
-        <FadeIn className="mb-10 flex flex-col items-start gap-6 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-site-brand sm:text-[11px]">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-16">
+        <FadeIn className="mb-8 flex flex-col items-start gap-4 sm:mb-12 sm:gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="min-w-0">
+            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-site-brand sm:mb-3 sm:text-[11px]">
               {eyebrow}
             </p>
             <h2
               style={{ fontFamily: "var(--font-display), Georgia, serif" }}
-              className="text-[clamp(1.85rem,3.5vw,3rem)] font-light leading-[1.12] tracking-tight text-site-ink"
+              className="text-[clamp(1.65rem,5.5vw,3rem)] font-light leading-[1.12] tracking-tight text-site-ink"
             >
               {title}
             </h2>
           </div>
-          <Link
-            href={archiveHref}
-            className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.22em] text-site-muted transition-colors hover:text-site-brand sm:text-[11px]"
-          >
-            {locale === "en" ? "View all" : "Svi članci"} →
-          </Link>
+          {showArchiveLink ? (
+            <Link
+              href={archiveHref}
+              className="inline-flex min-h-[44px] shrink-0 items-center py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-site-muted transition-colors hover:text-site-brand active:text-site-brand sm:text-[11px]"
+            >
+              {locale === "en" ? "View all" : "Svi članci"} →
+            </Link>
+          ) : null}
         </FadeIn>
 
         {err ? (
@@ -80,7 +85,7 @@ export function HomeBlogPreview({
         ) : null}
 
         {posts.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {posts.slice(0, 6).map((post, i) => (
               <FadeIn key={post.slug} delay={((i % 3) * 100) as 0 | 100 | 200}>
                 <Link
@@ -105,7 +110,7 @@ export function HomeBlogPreview({
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-1 flex-col gap-3 p-6 sm:p-7">
+                  <div className="flex flex-1 flex-col gap-3 p-5 sm:p-7">
                     <h3
                       style={{ fontFamily: "var(--font-display), Georgia, serif" }}
                       className="text-[clamp(1.15rem,2vw,1.45rem)] font-light leading-snug tracking-tight text-site-ink"

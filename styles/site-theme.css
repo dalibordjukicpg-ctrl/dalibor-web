@@ -96,9 +96,7 @@
 
   /* ── Sjene ────────────────────────────────────────────────────────────── */
 
-  --site-section-py: clamp(2.75rem, 8vw, 6rem);
-
-
+  --site-section-py: clamp(2.5rem, 7vw, 6rem);
 
   --shadow-site-card:    0 2px 16px rgb(0 0 0 / 0.05);
 
@@ -140,4 +138,8 @@
 
 }
 
-
+@media (max-width: 767px) {
+  :root {
+    --site-section-py: clamp(2.25rem, 8vw, 3.5rem);
+  }
+}
