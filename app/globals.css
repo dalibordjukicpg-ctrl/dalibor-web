@@ -57,8 +57,7 @@ h3 {
 }
 
 /*
- * Logo link u headeru: Chromium/Safari/Electron ostavljaju plavi obrub na :focus
- * poslije klika mišem; globalni tap-highlight takođe može crtati „kvadrat”.
+ * Logo link u headeru: bez obruba, sjene i tap-highlight kvadrata.
  */
 .site-header-logo-link {
   -webkit-tap-highlight-color: transparent;
@@ -66,35 +65,28 @@ h3 {
 
 .site-header-logo-link:focus,
 .site-header-logo-link:focus:not(:focus-visible),
+.site-header-logo-link:focus-visible,
 .site-header-logo-link:active {
   outline: none !important;
-  box-shadow: none !important;
-}
-
-.site-header-logo-link:focus-visible {
-  outline: 2px solid var(--site-brand) !important;
-  outline-offset: 3px;
   box-shadow: none !important;
 }
 
 .site-header-logo-link :where(span, img, picture) {
   outline: none !important;
   box-shadow: none !important;
+  filter: none !important;
 }
 
 .site-header-logo-link img {
   border: none;
+  box-shadow: none;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Hero: blaga sjena ispod slova logotipa — bez okvira i bez promjene boje */
-.site-header-logo-on-hero {
-  filter: drop-shadow(0 3px 5px rgb(0 0 0 / 0.55)) drop-shadow(0 8px 14px rgb(0 0 0 / 0.28));
-}
-
+.site-header-logo-on-hero,
 .hero-home-logo {
-  filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.45)) drop-shadow(0 12px 28px rgb(0 0 0 / 0.3));
+  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

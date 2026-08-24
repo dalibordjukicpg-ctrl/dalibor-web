@@ -50,7 +50,7 @@ export function withCanonical(path: string, meta: Metadata = {}): Metadata {
     openGraph: {
       type: "website",
       url,
-      siteName: share?.siteName ?? "Simple Solutioning",
+      siteName: share?.siteName ?? "Studio",
       locale: ogLocale,
       ...(title ? { title } : {}),
       ...(description ? { description } : {}),
@@ -59,7 +59,7 @@ export function withCanonical(path: string, meta: Metadata = {}): Metadata {
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: title ?? share?.ogTitle ?? "Simple Solutioning",
+          alt: title ?? share?.ogTitle ?? "Studio",
         },
       ],
       ...meta.openGraph,

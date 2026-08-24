@@ -39,7 +39,7 @@ function bookingPdfBranding() {
   return {
     clinicName:
       process.env.CONTACT_PDF_CLINIC_NAME?.trim() ||
-      "Simple Solutioning",
+      "Studio",
     clinicEmail:
       process.env.CONTACT_PDF_CLINIC_EMAIL?.trim() ||
       process.env.BOOKING_NOTIFY_EMAIL?.trim() ||

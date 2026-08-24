@@ -7,8 +7,8 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const src = path.join(root, "public", "logo", "simple-solutioning.png");
-const out = path.join(root, "public", "logo", "simple-solutioning-transparent.png");
+const src = path.join(root, "public", "logo", "logo-original.png");
+const out = path.join(root, "public", "logo", "logo-transparent.png");
 
 const { data, info } = await sharp(src)
   .ensureAlpha()

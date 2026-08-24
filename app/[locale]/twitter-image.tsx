@@ -1,7 +1,7 @@
 import { renderLocaleShareOgImage } from "@/lib/og-share-image";
 
 export const runtime = "nodejs";
-export const alt = "Simple Solutioning · Pejzažna arhitektura";
+export const alt = "Pejzažna arhitektura";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

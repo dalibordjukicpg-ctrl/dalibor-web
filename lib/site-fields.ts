@@ -207,7 +207,7 @@ export const SITE_STRING_LABELS: Record<SiteStringKey, string> = {
 };
 
 const ME_DEFAULTS = {
-  "org.brand": "Simple Solutioning",
+  "org.brand": "",
   "org.subtitle": "Pejzažna arhitektura i dizajn eksterijera",
   "header.cta_book": "Zakažite konsultaciju",
   "header.cta_book_href": "/transform-prostor",
@@ -293,12 +293,12 @@ const ME_DEFAULTS = {
   "footer.col_contact": "Kontakt",
   "footer.about_body":
     "Specijalizovani studio za pejzažnu arhitekturu, dizajn dvorišta i eksterijera sa fokusom na 3D vizualizaciju i premium realizaciju.",
-  "footer.site_domain_label": "simplesolutioning.com",
-  "footer.site_domain_href": "https://simplesolutioning.com",
+  "footer.site_domain_label": "",
+  "footer.site_domain_href": "",
   "footer.hours_title": "Radno vrijeme",
   "footer.nav_title": "Navigacija",
   "footer.social_title": "Pratite nas",
-  "footer.copyright": "Simple Solutioning. Sva prava zadržana.",
+  "footer.copyright": "Sva prava zadržana.",
   "footer.crafted": "Digital eXperience",
   "footer.crafted_by": "COMPUTER DOCTOR PODGORICA",
   "footer.privacy": "Politika privatnosti",
@@ -308,7 +308,7 @@ const ME_DEFAULTS = {
 
   "contact.phone1": "+382 67 000 000",
   "contact.phone2": "",
-  "contact.email": "info@simplesolutioning.com",
+  "contact.email": "",
   "contact.address": "Podgorica, Crna Gora",
   "contact.maps_href": "https://maps.google.com",
 
@@ -379,7 +379,7 @@ const EN_DEFAULTS: Record<SiteStringKey, string> = {
     "Luxury landscape and architectural design — from vision to reality.",
   "footer.about_body":
     "A specialized studio for landscape architecture, yard design and exteriors with a focus on 3D visualization and premium execution.",
-  "footer.copyright": "Simple Solutioning. All rights reserved.",
+  "footer.copyright": "All rights reserved.",
   "footer.crafted": "Digital eXperience",
   "footer.crafted_by": "COMPUTER DOCTOR PODGORICA",
   "footer.privacy": "Privacy policy",

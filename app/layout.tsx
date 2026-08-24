@@ -3,7 +3,6 @@ import { Cormorant_Garamond, Inter, Jost } from "next/font/google";
 
 import { AnalyticsInjector } from "@/components/site/analytics-injector";
 import { GlobalBackdrop } from "@/components/site/global-backdrop";
-import { DEFAULT_HEADER_LOGO } from "@/lib/clinic-assets";
 import { getSiteBranding } from "@/lib/queries/site-globals";
 import { getMetadataBase, getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -33,40 +32,37 @@ const headerNav = Jost({
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
   title: {
-    default: "Simple Solutioning",
-    template: "%s · Simple Solutioning",
+    default: "Studio",
+    template: "%s · Studio",
   },
   description:
     "Premium pejzažna arhitektura i dizajn eksterijera. 3D vizualizacija, portfolio projekata i besplatna konsultacija.",
   openGraph: {
     type: "website",
     locale: "sr_ME",
-    siteName: "Simple Solutioning",
+    siteName: "Studio",
     url: getSiteUrl(),
-    title: "Simple Solutioning · Pejzaž i arhitektura",
+    title: "Pejzaž i arhitektura",
     description:
       "Premium pejzažna arhitektura i dizajn eksterijera. 3D vizualizacija i besplatna konsultacija.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Simple Solutioning · Pejzaž i arhitektura",
+    title: "Pejzaž i arhitektura",
     description:
       "Premium pejzažna arhitektura i dizajn eksterijera. 3D vizualizacija i besplatna konsultacija.",
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Simple Solutioning",
+    title: "Studio",
   },
   formatDetection: {
     telephone: true,
     email: true,
     address: true,
   },
-  icons: {
-    icon: DEFAULT_HEADER_LOGO,
-    apple: DEFAULT_HEADER_LOGO,
-  },
+  icons: {},
 };
 
 /** iOS / Android: ispravan viewport, pun ekran, boja browser chrome-a */

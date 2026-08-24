@@ -7,7 +7,6 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { MaintenanceScreen } from "@/components/site/maintenance-screen";
 import { PublicAnalyticsCollector } from "@/components/site/public-analytics-collector";
-import { DEFAULT_HEADER_LOGO } from "@/lib/clinic-assets";
 import { FALLBACK_HEADER_NAV, resolveHeaderNav } from "@/lib/fallback-header-nav";
 import { getSiteLayoutData, mergeSiteStrings } from "@/lib/queries/site";
 import { getRequestClientIp } from "@/lib/request-client-ip";
@@ -41,10 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     /* ignore */
   }
   const share = getShareCopy(raw);
-  const icons: Metadata["icons"] = {
-    icon: DEFAULT_HEADER_LOGO,
-    apple: DEFAULT_HEADER_LOGO,
-  };
+  const icons: Metadata["icons"] = {};
   return withCanonical(`/${raw}`, {
     title: share.ogTitle,
     description: share.ogDescription,

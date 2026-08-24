@@ -40,7 +40,7 @@ function contactBranding() {
   return {
     clinicName:
       process.env.CONTACT_PDF_CLINIC_NAME?.trim() ||
-      "Simple Solutioning",
+      "Studio",
     clinicEmail:
       process.env.CONTACT_PDF_CLINIC_EMAIL?.trim() ||
       CONTACT_FORM_NOTIFY_INBOX,

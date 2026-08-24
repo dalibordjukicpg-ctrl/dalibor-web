@@ -1,5 +1,5 @@
-/** Podrazumijevani logo (transparentan PNG); upload u adminu ga nadjačava. */
-export const DEFAULT_HEADER_LOGO = "/logo/simple-solutioning-transparent.png";
+/** Podrazumijevani logo — prazan dok se ne postavi kroz admin panel. */
+export const DEFAULT_HEADER_LOGO = "";
 
 /** Kredit u podnožju — isti link kao Motrenko / dalibor projekat. */
 export const CRAFTED_BY_HREF = "https://www.computer-doctor.me";

@@ -11,22 +11,22 @@ export type ShareCopy = {
 
 export const SHARE_COPY: Record<Locale, ShareCopy> = {
   me: {
-    siteName: "Simple Solutioning",
-    ogTitle: "Simple Solutioning · Pejzažna arhitektura",
+    siteName: "Studio",
+    ogTitle: "Pejzažna arhitektura",
     ogDescription:
       "Pejzažna arhitektura, dizajn dvorišta i eksterijera sa 3D vizualizacijom i premium realizacijom.",
     ogImageTagline: "Pejzažna arhitektura i dizajn eksterijera",
   },
   en: {
-    siteName: "Simple Solutioning",
-    ogTitle: "Simple Solutioning · Landscape architecture",
+    siteName: "Studio",
+    ogTitle: "Landscape architecture",
     ogDescription:
       "Landscape architecture, yard design and exteriors with 3D visualization and premium execution.",
     ogImageTagline: "Landscape architecture and exterior design",
   },
   ru: {
-    siteName: "Simple Solutioning",
-    ogTitle: "Simple Solutioning · Ландшафтная архитектура",
+    siteName: "Studio",
+    ogTitle: "Ландшафтная архитектура",
     ogDescription:
       "Ландшафтная архитектура, дизайн двора и экстерьера с 3D-визуализацией.",
     ogImageTagline: "Ландшафтная архитектура",

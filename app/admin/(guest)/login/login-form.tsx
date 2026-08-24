@@ -41,7 +41,7 @@ export function LoginForm({
           type="email"
           required
           autoComplete="username"
-          placeholder="admin@subacev.studio"
+          placeholder="admin@example.com"
           className="mt-1 w-full rounded-lg border border-site-border bg-white px-3 py-2.5 text-sm text-site-ink outline-none transition focus:border-site-brand focus:ring-2 focus:ring-site-brand/25"
         />
       </div>

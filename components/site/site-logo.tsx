@@ -25,17 +25,20 @@ type Props = {
 };
 
 export function SiteLogo({
-  alt = "Simple Solutioning",
+  alt = "",
   variant = "header",
   className = "",
   priority = false,
 }: Props) {
+  const src = DEFAULT_HEADER_LOGO;
+  if (!src) return null;
+
   const classes = [VARIANT_CLASS[variant], className].filter(Boolean).join(" ");
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={DEFAULT_HEADER_LOGO}
+      src={src}
       alt={alt}
       className={classes}
       decoding="async"
